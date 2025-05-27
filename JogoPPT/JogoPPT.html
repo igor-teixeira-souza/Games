@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite: Pedra, Papel e Tesoura</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Barlow:wght@400;600&display=swap');
+
+        :root {
+            --primary: #FF4C4C;
+            --secondary: #4C8BFF;
+            --dark: #1E1E1E;
+            --light: #F5F5F5;
+            --accent: #FFC800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            background-image: url('https://www.epicgames.com/fortnite/en-US/home/newsroom-5.8-22-1/news/5-8-22-1-1920x1080-1e5c3e4a9f3d6b1c5e5e5e5e5e5e5e5e.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 var(--primary), -1px -1px 0 var(--primary),
+                1px -1px 0 var(--primary), -1px 1px 0 var(--primary);
+        }
+
+        a{
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  list-style: none;
+  text-decoration: none ;
+  color: white;
+}
+
+.fortnite-header {
+  background: linear-gradient(to right, #1a2a6c, #004e92, #1a2a6c);
+  border-bottom: 3px solid #f5d742;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  padding: 0;
+  margin: 0 auto 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  overflow: hidden;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-logo {
+  font-size: 3.5rem;
+  color: white;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-align: center;
+  padding: 15px 0;
+  flex: 1;
+}
+
+        .game-container {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--accent);
+        }
+
+        .game-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .choice {
+            background-color: var(--dark);
+            border: 3px solid var(--accent);
+            border-radius: 10px;
+            padding: 1rem;
+            width: 150px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 200, 0, 0.3);
+        }
+
+        .choice img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .choice p {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .vs-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .player,
+        .computer {
+            text-align: center;
+            width: 40%;
+        }
+
+        .player-choice,
+        .computer-choice {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .player-choice img,
+        .computer-choice img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .vs {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .result {
+            text-align: center;
+            margin: 2rem 0;
+            min-height: 60px;
+        }
+
+        .result-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .win {
+            background-color: rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
+        }
+
+        .lose {
+            background-color: rgba(244, 67, 54, 0.3);
+            color: #F44336;
+        }
+
+        .draw {
+            background-color: rgba(255, 235, 59, 0.3);
+            color: #FFEB3B;
+        }
+
+        .score {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .score div {
+            display: flex;
+            align-items: center;
+        }
+
+        .score span {
+            font-weight: bold;
+            margin-left: 0.5rem;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #FF3333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 76, 76, 0.4);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .choices {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .vs-container {
+                flex-direction: column;
+            }
+
+            .player,
+            .computer {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="fortnite-header">
+        <div class="header-content">
+            <div class="header-logo">BATTLE ROYALE</div>
+            <div class="vbucks-display">
+                <a href="http://127.0.0.1:5500/index.html">Tela Inicial</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="game-container">
+        <div class="game-info">
+            <h2>Escolha seu item para a batalha!</h2>
+            <p>Picareta (Pedra) • Escudo (Papel) • AR (Tesoura)</p>
+        </div>
+
+        <div class="choices">
+            <div class="choice" data-choice="picareta">
+                <img src="img/varinhaEstelar.png" alt="Picareta">
+                <p>Picareta</p>
+            </div>
+            <div class="choice" data-choice="escudo">
+                <img src="img/escudoRoyale.png" alt="Escudo">
+                <p>Escudo</p>
+            </div>
+            <div class="choice" data-choice="ar">
+                <img src="img/Scar.webp" alt="AR">
+                <p>AR</p>
+            </div>
+        </div>
+
+        <div class="vs-container hidden" id="battle">
+            <div class="player">
+                <h3>Você</h3>
+                <div class="player-choice">
+                    <img id="player-choice-img" src="" alt="Sua escolha">
+                </div>
+            </div>
+
+            <div class="vs">VS</div>
+
+            <div class="computer">
+                <h3>Inimigo</h3>
+                <div class="computer-choice">
+                    <img id="computer-choice-img" src="" alt="Escolha do computador">
+                </div>
+            </div>
+        </div>
+
+        <div class="result">
+            <div id="result-text" class="result-text hidden"></div>
+            <div class="score">
+                <div>Vitórias: <span id="wins">0</span></div>
+                <div>Derrotas: <span id="losses">0</span></div>
+                <div>Empates: <span id="draws">0</span></div>
+            </div>
+        </div>
+
+        <div class="actions hidden" id="actions">
+            <button id="play-again">Jogar Novamente</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elementos do DOM
+            const choices = document.querySelectorAll('.choice');
+            const battleSection = document.getElementById('battle');
+            const playerChoiceImg = document.getElementById('player-choice-img');
+            const computerChoiceImg = document.getElementById('computer-choice-img');
+            const resultText = document.getElementById('result-text');
+            const winsElement = document.getElementById('wins');
+            const lossesElement = document.getElementById('losses');
+            const drawsElement = document.getElementById('draws');
+            const playAgainButton = document.getElementById('play-again');
+            const actionsSection = document.getElementById('actions');
+
+            // Variáveis do jogo
+            let wins = 0;
+            let losses = 0;
+            let draws = 0;
+
+            // Opções do jogo
+            const options = {
+                picareta: {
+                    name: 'Picareta',
+                    beats: 'ar',
+                    image: 'img/varinhaEstelar.png'
+                },
+                escudo: {
+                    name: 'Escudo',
+                    beats: 'picareta',
+                    image: 'img/escudoRoyale.png'
+                },
+                ar: {
+                    name: 'AR',
+                    beats: 'escudo',
+                    image: 'img/Scar.webp'
+                }
+            };
+
+            // Event listeners
+            choices.forEach(choice => {
+                choice.addEventListener('click', () => {
+                    const playerChoice = choice.getAttribute('data-choice');
+                    playGame(playerChoice);
+                });
+            });
+
+            playAgainButton.addEventListener('click', resetGame);
+
+            // Função principal do jogo
+            function playGame(playerChoice) {
+                // Gerar escolha aleatória do computador
+                const choices = Object.keys(options);
+                const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+                // Mostrar as escolhas
+                playerChoiceImg.src = options[playerChoice].image;
+                computerChoiceImg.src = options[computerChoice].image;
+
+                // Mostrar a seção de batalha
+                battleSection.classList.remove('hidden');
+
+                // Determinar o vencedor
+                const result = determineWinner(playerChoice, computerChoice);
+
+                // Mostrar resultado
+                displayResult(result, options[playerChoice].name, options[computerChoice].name);
+
+                // Atualizar placar
+                updateScore(result);
+
+                // Mostrar botão de jogar novamente
+                actionsSection.classList.remove('hidden');
+
+                // Desabilitar escolhas durante o resultado
+                choices.forEach(c => c.style.pointerEvents = 'none');
+            }
+
+            // Determinar o vencedor
+            function determineWinner(player, computer) {
+                if (player === computer) {
+                    return 'draw';
+                }
+
+                if (options[player].beats === computer) {
+                    return 'win';
+                } else {
+                    return 'lose';
+                }
+            }
+
+            // Mostrar resultado
+            function displayResult(result, playerChoiceName, computerChoiceName) {
+                let message = '';
+                let resultClass = '';
+
+                switch (result) {
+                    case 'win':
+                        message = `Você venceu! ${playerChoiceName} derrota ${computerChoiceName}`;
+                        resultClass = 'win';
+                        break;
+                    case 'lose':
+                        message = `Você perdeu! ${computerChoiceName} derrota ${playerChoiceName}`;
+                        resultClass = 'lose';
+                        break;
+                    case 'draw':
+                        message = `Empate! Ambos escolheram ${playerChoiceName}`;
+                        resultClass = 'draw';
+                        break;
+                }
+
+                resultText.textContent = message;
+                resultText.className = `result-text ${resultClass}`;
+                resultText.classList.remove('hidden');
+            }
+
+            // Atualizar placar
+            function updateScore(result) {
+                switch (result) {
+                    case 'win':
+                        wins++;
+                        winsElement.textContent = wins;
+                        break;
+                    case 'lose':
+                        losses++;
+                        lossesElement.textContent = losses;
+                        break;
+                    case 'draw':
+                        draws++;
+                        drawsElement.textContent = draws;
+                        break;
+                }
+            }
+
+            // Resetar o jogo para uma nova partida
+            function resetGame() {
+                battleSection.classList.add('hidden');
+                resultText.classList.add('hidden');
+                actionsSection.classList.add('hidden');
+
+                // Reabilitar escolhas
+                choices.forEach(c => c.style.pointerEvents = 'auto');
+            }
+        });
+    </script>
+</body>
+
+</html>
