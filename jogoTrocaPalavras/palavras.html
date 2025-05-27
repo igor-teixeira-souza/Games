@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="palavras.css" />
+    <title>Fortnite Word Mix</title>
+  </head>
+  <body>
+    <div class="container">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Fortnite_F_lettermark_logo.png/1200px-Fortnite_F_lettermark_logo.png"
+        alt="Fortnite Logo"
+        class="logo"
+      />
+      <h1>FORTNITE WORD MIX</h1>
+      <p class="subtitle">Complete as frases épicas do Battle Royale!</p>
+
+      <div class="phrase-selector">
+        <button class="phrase-btn" onclick="selectPhrase(0)">Frase 1</button>
+        <button class="phrase-btn" onclick="selectPhrase(1)">Frase 2</button>
+        <button class="phrase-btn" onclick="selectPhrase(2)">Frase 3</button>
+        <button class="phrase-btn" onclick="selectPhrase(3)">Frase 4</button>
+        <button class="phrase-btn" onclick="selectPhrase(4)">Frase 5</button>
+      </div>
+
+      <div class="current-phrase" id="currentPhrase"></div>
+
+      <div class="input-container">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Digite sua palavra..."
+          autocomplete="off"
+        />
+      </div>
+
+      <button onclick="generateSentence()">CRIAR FRASE ÉPICA</button>
+
+      <div class="result" id="result"></div>
+    </div>
+
+    <script src="palavras.js"></script>
+  </body>
+</html>

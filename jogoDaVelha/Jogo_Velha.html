@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha - Fortnite</title>
+    <link rel="stylesheet" href="jogo_Velha.css">
+    <link rel="preload" href="fonts/Burbank Big Condensed Black.otf" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+    <div class="fortnite-bg"></div>
+    
+    <div class="fortnite-container">
+        <!-- Header -->
+        <header class="fortnite-header">
+            <div class="header-content">
+                <div class="header-logo">BATTLE ROYALE</div>
+                <div class="vbucks-display">
+                    <img src="img/vbucks.webp" alt="VBucks">
+                    <span id="total-vbucks">500</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Player Selection -->
+        <div class="player-selection">
+            <div class="selection-container">
+                <div class="player-selection-card">
+                    <h3>PLAYER 1</h3>
+                    <input type="text" class="fortnite-input" id="player1-name" placeholder="AGENT NAME" maxlength="12">
+                    <div class="skin-selection">
+                        <div class="skin-option selected" data-skin="Jonesy">
+                            <img src="img/Jonesy.png" alt="Jonesy">
+                            <div class="skin-name">JONESY</div>
+                        </div>
+                        <div class="skin-option" data-skin="Peely">
+                            <img src="img/Peely.png" alt="Peely">
+                            <div class="skin-name">PEELY</div>
+                        </div>
+                        <div class="skin-option" data-skin="Raven">
+                            <img src="img/Raven.png" alt="Raven">
+                            <div class="skin-name">RAVEN</div>
+                        </div>
+                        <div class="skin-option" data-skin="Lynx">
+                            <img src="img/Lynx.png" alt="Lynx">
+                            <div class="skin-name">LYNX</div>
+                        </div>
+                    </div>
+                    <button class="fortnite-btn confirm-btn" data-player="1">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">CONFIRM</span>
+                    </button>
+                </div>
+
+                <div class="vs-separator">
+                    <div class="vs-line"></div>
+                    <div class="vs-text">VS</div>
+                    <div class="vs-line"></div>
+                </div>
+
+                <div class="player-selection-card">
+                    <h3>PLAYER 2</h3>
+                    <input type="text" class="fortnite-input" id="player2-name" placeholder="AGENT NAME" maxlength="12">
+                    <div class="skin-selection">
+                        <div class="skin-option" data-skin="Jonesy">
+                            <img src="img/Jonesy.png" alt="Jonesy">
+                            <div class="skin-name">JONESY</div>
+                        </div>
+                        <div class="skin-option selected" data-skin="Peely">
+                            <img src="img/Peely.png" alt="Peely">
+                            <div class="skin-name">PEELY</div>
+                        </div>
+                        <div class="skin-option" data-skin="Raven">
+                            <img src="img/Raven.png" alt="Raven">
+                            <div class="skin-name">RAVEN</div>
+                        </div>
+                        <div class="skin-option" data-skin="Lynx">
+                            <img src="img/Lynx.png" alt="Lynx">
+                            <div class="skin-name">LYNX</div>
+                        </div>
+                    </div>
+                    <button class="fortnite-btn confirm-btn" data-player="2">
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">CONFIRM</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Game Area -->
+        <main class="fortnite-main">
+            <div class="game-container" style="display:none">
+                <!-- Players and Board Container -->
+                <div class="game-content">
+                    <!-- Player 1 -->
+                    <div class="player-card x-player active">
+                        <img src="img/Jonesy.png" alt="Player 1" class="player-avatar">
+                        <div class="player-info">
+                            <h2 id="player1-display-name">JONESY</h2>
+                            <div class="player-score">0</div>
+                            <div class="player-vbucks">+0 V-BUCKS</div>
+                        </div>
+                    </div>
+
+                    <!-- Game Board -->
+                    <div class="game-board-container">
+                        <div class="game-board">
+                            <div class="board-row">
+                                <div class="board-cell" data-index="0"></div>
+                                <div class="board-cell" data-index="1"></div>
+                                <div class="board-cell" data-index="2"></div>
+                            </div>
+                            <div class="board-row">
+                                <div class="board-cell" data-index="3"></div>
+                                <div class="board-cell" data-index="4"></div>
+                                <div class="board-cell" data-index="5"></div>
+                            </div>
+                            <div class="board-row">
+                                <div class="board-cell" data-index="6"></div>
+                                <div class="board-cell" data-index="7"></div>
+                                <div class="board-cell" data-index="8"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Player 2 -->
+                    <div class="player-card o-player">
+                        <img src="img/Peely.png" alt="Player 2" class="player-avatar">
+                        <div class="player-info">
+                            <h2 id="player2-display-name">PEELY</h2>
+                            <div class="player-score">0</div>
+                            <div class="player-vbucks">+0 V-BUCKS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="game-controls">
+                    <button class="fortnite-btn restart-btn">
+                        <span class="btn-icon">↻</span>
+                        <span class="btn-text">RECOMEÇAR!</span>
+                    </button>
+                    <button class="fortnite-btn newgame-btn">
+                        <span class="btn-icon">⚔</span>
+                        <span class="btn-text">PRONTO!</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Notification -->
+        <div class="fortnite-notification">
+            <div class="notification-bar"></div>
+            <div class="notification-content">
+                <img src="img/vbucks.webp" alt="VBucks">
+                <p>VICTORY ROYALE! +100 V-BUCKS</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="clickSound" src="sounds/click.mp3"></audio>
+    <audio id="victorySound" src="sounds/victory.mp3"></audio>
+    <audio id="vbucksSound" src="sounds/vbucks.mp3"></audio>
+
+    <script src="Jogo_Velha.js"></script>
+</body>
+</html>
